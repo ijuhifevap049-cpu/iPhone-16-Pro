@@ -96,7 +96,7 @@ export default function App() {
       if (userId) {
         const notifyCpaDashboard = async () => {
           try {
-            await fetch('https://cpa-565218-w95z.vercel.app.run.app/api/task-completed', {
+            await fetch('https://cpa-565218-x2im.vercel.app.run.app/api/task-completed', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
@@ -105,7 +105,7 @@ export default function App() {
               body: JSON.stringify({
                 userId: userId,
                 taskInfo: "iPhone 16 Pro 任务完成",
-                earnings: 13.12, // 对应编号 1056 的真实价格
+                earnings: 10.63, // 对应编号 1056 的真实价格
                 transactionId: "TRX_" + Math.random().toString(36).substr(2, 9)
               })
             });
