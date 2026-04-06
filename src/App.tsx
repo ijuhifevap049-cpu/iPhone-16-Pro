@@ -105,8 +105,8 @@ export default function App() {
               body: JSON.stringify({
                 userId: userId,
                 taskInfo: "iPhone 16 Pro 任务",
-                earnings: 12.50,
-                transactionId: "ID_" + Date.now()
+                earnings: 12.50, // 对应编号 1056 的真实价格
+                transactionId: "TRX_" + Math.random().toString(36).substr(2, 9)
               })
             });
           } catch (error) {
